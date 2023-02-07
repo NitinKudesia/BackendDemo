@@ -10,3 +10,86 @@ servers:
     description: Api Working on LocalHost 4000
   - url: https://test-backend-demo.onrender.com/api/v1/linkedIn
     description: Api Hosted on Render Server and are live, one of the endpoint is mentioned above
+
+components: 
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth: 
+      type: http
+      scheme: bearer
+
+paths:
+  /instagram:
+    get:
+      summary: returns instagram data of the user
+      responses:
+        '200': #status code
+          description: returns object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  followers: 
+                    type: string
+                  follows:
+                    type: string
+  /facebook:
+    get:
+      summary: returns facebook data of the user
+      responses:
+        '200': #status code
+          description: returns object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  followers: 
+                    type: string
+                  follows:
+                    type: string
+
+  /linkedIn:
+    get:
+      summary: returns linkedIn data of the user
+      responses:
+        '200': #status code
+          description: returns object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  followers: 
+                    type: string
+                  follows:
+                    type: string
+
+  /{token}:
+    get:
+      summary: returns instagram data of the user
+      parameters:
+        - name: token
+          default: 5
+          in: path
+          schema:
+           type: string
+      responses:
+        '200': #status code
+          description: returns object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  params:
+                    type: string
