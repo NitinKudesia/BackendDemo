@@ -35,7 +35,7 @@ app.get("/api/v1/facebook", (req, res) => {
     res.status(200).json({facebookData})
 })
 
-app.get("/api/v1/linkedIn", (req, res) => {
+app.get("/api/v1/';'", (req, res) => {
     const linkedInData = {
         usename: "Nitin Kudesia",
         followers: 100,
@@ -49,6 +49,10 @@ app.get("/api/v1/linkedIn", (req, res) => {
 app.get("/api/v1/:token", (req, res) => {
     console.log(req.params.token)
     res.status(200).json({param : req.params.token})
+})
+
+app.post("api/v1/UpdateInfo", (req, res) => {
+    console.log("request",req)
 })
 
 app.listen(PORT, () => {
