@@ -1,11 +1,12 @@
 const express = require('express');
 const format = require('date-format')
 const app = express();
-
+var bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./swagger.yaml');
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const PORT = 4000 || process.env.PORT;
@@ -52,8 +53,33 @@ app.get("/api/v1/:token", (req, res) => {
 })
 
 app.post("api/v1/UpdateInfo", (req, res) => {
-    console.log("request",req)
+    const {firstname} = req.body
+    res.status(200).send("Successfully Getting")
 })
+var users =[{
+    assetId: 1,
+    name: "John Doe",
+    age : 23,
+    email: "john@doe.com"
+}];
+
+app.get('/api/users', function(req, res){
+    return res.json(users);    
+});
+// {
+//     "user": {
+//        "id": 3,
+//         "name": "Test User",
+//         "age" : 20,
+//         "email": "test@test.com"
+//     }
+// }
+app.post('/api/users', function (req, res) {
+let user = req.body.user;
+users.push(user);
+
+return res.send('User has been added successfully');
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
